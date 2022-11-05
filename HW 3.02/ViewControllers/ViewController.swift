@@ -9,53 +9,23 @@ import UIKit
 
 let jokeURL = "https://official-joke-api.appspot.com/random_joke"
 
-enum Alert {
-    case success
-    case failed
-    
-    var title: String {
-        switch self {
-        case .success:
-            return "Success"
-        case .failed:
-            return "Failed"
-        }
-    }
-    
-    var message: String {
-        switch self {
-        case .success:
-            return "You can see the results in the Debug area"
-        case .failed:
-            return "You can see error in the Debug area"
-        }
-    }
-}
-
-
 class ViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var jokeTypeLabel: UILabel!
     @IBOutlet weak var jokeSetupLabel: UILabel!
-    
     @IBOutlet weak var jokePunchlineLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         getRandomJoke()
     }
     
     
-    @IBAction func randomJokeButton(_ sender: Any) {
+    @IBAction func randomJokeButton(_ sender: UIButton) {
         getRandomJoke()
-    }
-    
-    private func showAlert(withStatus status: Alert) {
-        let alert = UIAlertController(title: status.title, message: status.message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        DispatchQueue.main.async { [unowned self] in
-            present(alert, animated: true)
-        }
     }
 }
 
@@ -77,9 +47,9 @@ extension ViewController {
                     self?.jokeSetupLabel.text = joke.setup
                     self?.jokeTypeLabel.text = joke.type
                     self?.jokePunchlineLabel.text = joke.punchline
+                    self?.activityIndicator.stopAnimating()
                 }
             } catch let error {
-                self?.showAlert(withStatus: .failed)
                 print(error.localizedDescription)
             }
         }.resume()
