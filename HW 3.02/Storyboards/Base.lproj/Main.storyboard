@@ -34,26 +34,52 @@
                                     <action selector="randomJokeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fYM-uK-2Nr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-5U-G8Q">
-                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Zx2-qq-Ix1">
+                                <rect key="frame" x="16" y="389" width="361" height="74"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAd-Tx-rP2">
+                                        <rect key="frame" x="0.0" y="0.0" width="25.666666666666668" height="13.333333333333334"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setup" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-5U-G8Q">
+                                        <rect key="frame" x="0.0" y="17.333333333333314" width="56.333333333333336" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Punchline" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKW-8J-DvM">
+                                        <rect key="frame" x="0.0" y="47.666666666666686" width="93.666666666666671" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MeJ-5U-G8Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Hl-pY-OCT"/>
-                            <constraint firstItem="MeJ-5U-G8Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ary-tL-6fp"/>
+                            <constraint firstItem="Zx2-qq-Ix1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1Wj-EO-nAx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UEc-WZ-PTQ" secondAttribute="trailing" constant="15" id="Asy-hk-NeX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UEc-WZ-PTQ" secondAttribute="bottom" constant="15" id="UXk-Ze-RvY"/>
                             <constraint firstItem="UEc-WZ-PTQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Vm9-p8-2fN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zx2-qq-Ix1" secondAttribute="trailing" constant="16" id="nT7-GM-o5u"/>
+                            <constraint firstItem="Zx2-qq-Ix1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="tm2-II-j4I"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jyT-xy-j0f"/>
                     <connections>
-                        <outlet property="jokeLabel" destination="MeJ-5U-G8Q" id="Ffr-V1-Lw8"/>
+                        <outlet property="jokePunchlineLabel" destination="BKW-8J-DvM" id="jmU-QK-O2V"/>
+                        <outlet property="jokeSetupLabel" destination="MeJ-5U-G8Q" id="Ffr-V1-Lw8"/>
+                        <outlet property="jokeTypeLabel" destination="hAd-Tx-rP2" id="VN2-eF-xku"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

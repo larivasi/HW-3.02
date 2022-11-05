@@ -34,15 +34,17 @@ enum Alert {
 
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var jokeLabel: UILabel!
     
+    @IBOutlet weak var jokeTypeLabel: UILabel!
+    @IBOutlet weak var jokeSetupLabel: UILabel!
+    
+    @IBOutlet weak var jokePunchlineLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        getRandomJoke()
     }
-
-
+    
+    
     @IBAction func randomJokeButton(_ sender: Any) {
         getRandomJoke()
     }
@@ -60,31 +62,26 @@ class ViewController: UIViewController {
 extension ViewController {
     private func getRandomJoke() {
         guard let url = URL(string: jokeURL) else { return }
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-        }
-
-        task.resume()
         
-        
-//        guard let url = URL(string: jokeURL) else { return }
-//
-//        URLSession.shared.dataTask(with: url) { [weak self]  data, _, error in
-//            guard let data = data else {
-//                print(error?.localizedDescription ?? "No error description")
-//                return
-//            }
-//
-//            let decoder = JSONDecoder()
-//            do {
-//                let joke = try decoder.decode(Joke.self, from: data)
-//                print(joke)
-//                self?.showAlert(withStatus: .success)
-//            } catch let error {
-//                self?.showAlert(withStatus: .failed)
-//                print(error.localizedDescription)
-//            }
-//        }.resume()
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No error description")
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let joke = try decoder.decode(Joke.self, from: data)
+                print(joke)
+                DispatchQueue.main.async {
+                    self?.jokeSetupLabel.text = joke.setup
+                    self?.jokeTypeLabel.text = joke.type
+                    self?.jokePunchlineLabel.text = joke.punchline
+                }
+            } catch let error {
+                self?.showAlert(withStatus: .failed)
+                print(error.localizedDescription)
+            }
+        }.resume()
     }
 }
